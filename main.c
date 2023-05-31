@@ -13,6 +13,7 @@ typedef struct {
 
 void agregarLibro(Libro libros[], int* contador);
 void eliminarLibro(Libro registroLibros[]);
+void mostrarLibro(Libro registroLibros[MAXLIB]);
 
 int main()
 {
@@ -47,6 +48,20 @@ void agregarLibro(Libro libros[], int* contador) {
 	} else {
 		printf("La biblioteca está llena. No es posible agregar más libros.\n");
 	}
+}
+void mostrarLibro(Libro registroLibros[MAXLIB])
+{
+    printf("\nREGISTRO DE LIBROS EXISTENTES\n");
+
+    for (int i = 0; i < MAXLIB; i++) {
+        printf("Libro [%d]\n",i+1);
+        printf("Titulo: %s\n", registroLibros[i].titulo);
+        printf("Autor: %s\n", registroLibros[i].autor);
+        printf("Editorial: %s\n", registroLibros[i].editorial);
+        printf("A%co: %d\n", 164,registroLibros[i].anio);
+        printf("Autor: %.2f\n", registroLibros[i].precio);
+        printf("----------------------\n");
+    }
 }
 
 void eliminarLibro(Libro registroLibros[])
