@@ -10,6 +10,16 @@ typedef struct {
 	char genero[50];
 	int anio_publicacion;
 } Libro;
+
+void agregarLibro(Libro libros[], int* contador);
+void eliminarLibro(Libro registroLibros[]);
+
+int main()
+{
+    
+    return 0;
+}
+
 void agregarLibro(Libro libros[], int* contador) {
 	if (*contador < MAX_LIBROS) {
 		Libro nuevoLibro;
@@ -37,4 +47,31 @@ void agregarLibro(Libro libros[], int* contador) {
 	} else {
 		printf("La biblioteca está llena. No es posible agregar más libros.\n");
 	}
+}
+
+void eliminarLibro(Libro registroLibros[])
+{
+    char indexTituloLibro[30];
+    int encontrado = 0;
+    fflush(stdin);
+    printf("\nELIMINAR LIBROS\n");
+    printf("Ingrese el titulo del libro a eliminar: ");
+    gets(indexTituloLibro);
+
+    for (int i = 0; i < MAX_LIBROS; i++)
+    {
+        if (strcmp(indexTituloLibro, registroLibros[i].titulo) == 0)
+        {
+            for (int j = i; j < MAX_LIBROS; j++)
+                registroLibros[j] = registroLibros[j + 1];
+
+            encontrado = 1;
+            printf("\nEl libro se elimino correctamente del sistema\n");
+        }
+    }
+
+    if (!encontrado)
+    {
+        printf("\nEl libro que desea eliminar no se encuentra\n");
+    }
 }
