@@ -26,7 +26,47 @@ int main()
 	
 	return 0;
 }
+void menu()
+{
+    int opcion;
 
+    do
+    {
+        printf("------ MENU DE OPCIONES ------\n");
+        printf("1. Agregar Libro\n");
+        printf("2. Modificar Libro\n");
+        printf("3. Eliminar Libro\n");
+        printf("4. Mostrar Libros cargados\n");
+        printf("5. Salir\n");
+        printf("Ingrese una opcion: ");
+        scanf("%d", &opcion);
+
+        switch (opcion)
+        {
+        case 1:
+            agregarLibro(registroLibros);
+            break;
+        case 2:
+            modificarLibro(registroLibros);
+            break;
+        case 3:
+            eliminarLibro(registroLibros);
+            break;
+        case 4:
+            mostrarLibro(registroLibros);
+            break;
+        case 5:
+            printf("Saliendo del sistema...\n");
+            break;
+        
+        default:
+            printf("Por favor, ingrese una opcion valida.\n");
+            break;
+        }
+        printf("\n");
+    } while (opcion != 5);
+    
+}
 void agregarLibro(Libro registroLibros[MAXLIB])
 {
 	printf("\n------ AGREGAR NUEVO LIBRO ------\n");
