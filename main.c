@@ -66,25 +66,30 @@ int main()
 
 void agregarLibro(Libro registroLibros[MAXLIB])
 {
-	printf("\n------ AGREGAR NUEVO LIBRO ------\n");
+    printf("\n------ AGREGAR NUEVO LIBRO ------\n");
 
-	for (int i = 0; i < MAXLIB; i++)
-	{
-		fflush(stdin);
-		printf("- Libro [%d]\n", i + 1);
-		printf("- Autor del libro: ");
-		gets(registroLibros[i].autor);
-		printf("- Titulo del libro: ");
-		gets(registroLibros[i].titulo);
-		printf("- Editorial del libro: ");
-		gets(registroLibros[i].editorial);
-		printf("- A%co de publicacion del libro: ", 164);
-		scanf("%d", &registroLibros[i].anio);
-		printf("- Precio del libro: ");
-		scanf("%f", &registroLibros[i].precio);
-		contLibros++;
-	}
-	printf("\n");
+    int opcion;
+
+    do
+    {
+        fflush(stdin);
+        printf("- Autor del libro: ");
+        gets(registroLibros[contLibros].autor);
+        printf("- Título del libro: ");
+        gets(registroLibros[contLibros].titulo);
+        printf("- Editorial del libro: ");
+        gets(registroLibros[contLibros].editorial);
+        printf("- Año de publicación del libro: ");
+        scanf("%d", &registroLibros[contLibros].anio);
+        printf("- Precio del libro: ");
+        scanf("%f", &registroLibros[contLibros].precio);
+
+        contLibros++; // Incrementar la cantidad de libros
+
+        printf("¿Desea agregar otro libro? (1: Sí / 0: No): ");
+        scanf("%d", &opcion);
+        printf("\n");
+    } while (opcion == 1);
 }
 
 void mostrarLibro(Libro registroLibros[MAXLIB])
