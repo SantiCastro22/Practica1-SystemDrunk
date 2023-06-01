@@ -129,3 +129,32 @@ void eliminarLibro(Libro registroLibros[MAXLIB])
 		printf("\nEl libro que desea eliminar no se encuentra\n");
 	}
 }
+
+void modificarLibro(Libro registroLibros[MAXLIB])
+{
+    int editLibro; 
+    printf("\nMODIFICAR LIBROS\n");
+    printf("Ingrese el numero de libro a editar: ");
+    scanf("%d", &editLibro);
+
+    editLibro--;
+    fflush(stdin);
+
+    if (editLibro <= contLibros)
+    {
+        printf("Nuevo Autor: ");
+        gets(registroLibros[editLibro].autor);
+        printf("Nuevo Titulo: ");
+        gets(registroLibros[editLibro].titulo);
+        printf("Nuevo Editorial: ");
+        gets(registroLibros[editLibro].editorial);
+        printf("Nuevo A%co de publicacion: ",164);
+        scanf("%d",&registroLibros[editLibro].anio);
+        printf("Nuevo Precio: ");
+        scanf("%f",&registroLibros[editLibro].precio);
+        printf("\nEl libro se modifico con exito\n");
+    }
+    else 
+        printf("\nEl libro que desea modicar no se encuentra\n");
+    
+}
