@@ -163,3 +163,4 @@ void modificarLibro(Libro registroLibros[MAXLIB])
         printf("\nEl libro que desea modicar no se encuentra\n");
     
 }
+
