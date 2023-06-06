@@ -26,6 +26,10 @@ int main()
 {
 	int opcion;
 
+	printf("*********************************\n");
+    printf("*  Sistema de Gestion de Libros *\n");
+    printf("*********************************\n");
+
 	do
 	{
 		printf("------ MENU DE OPCIONES ------\n");
@@ -43,13 +47,22 @@ int main()
 			agregarLibro(registroLibros);
 			break;
 		case 2:
-			modificarLibro(registroLibros);
+			if (contLibros>0)
+				modificarLibro(registroLibros);
+			else
+				printf("\nNo existen libros cargados para modificar\n");
 			break;
 		case 3:
-			eliminarLibro(registroLibros);
+			if (contLibros>0)
+				eliminarLibro(registroLibros);
+			else
+				printf("\nNo existen libros cargados para eliminar\n");
 			break;
 		case 4:
-			mostrarLibro(registroLibros);
+			if (contLibros>0)
+				mostrarLibro(registroLibros);
+			else
+				printf("\nNo existen libros cargados para mostrar\n");
 			break;
 		case 5:
 			printf("\n Saliendo del sistema...\n");
@@ -74,7 +87,7 @@ void agregarLibro(Libro registroLibros[MAXLIB])
 	do
 	{
 		fflush(stdin);
-		printf("Libro Nro [%d]\n", contLibros + 1);
+		printf("Libro Nro: #%d\n", contLibros + 1);
 		printf("- Autor del libro: ");
 		gets(registroLibros[contLibros].autor);
 		printf("- Titulo del libro: ");
@@ -92,6 +105,7 @@ void agregarLibro(Libro registroLibros[MAXLIB])
 		scanf("%d", &opcion);
 		printf("\n");
 	} while (opcion == 1);
+
 }
 
 void mostrarLibro(Libro registroLibros[MAXLIB])
@@ -100,7 +114,7 @@ void mostrarLibro(Libro registroLibros[MAXLIB])
 
 	for (int i = 0; i < contLibros; i++)
 	{
-		printf("Libro [%d]\n", i + 1);
+		printf("Libro #%d\n", i + 1);
 		printf("Titulo: %s\n", registroLibros[i].titulo);
 		printf("Autor: %s\n", registroLibros[i].autor);
 		printf("Editorial: %s\n", registroLibros[i].editorial);
@@ -153,16 +167,28 @@ void modificarLibro(Libro registroLibros[MAXLIB])
 
 	if (editLibro <= contLibros)
 	{
-		printf("Nuevo Autor: ");
+		printf("Modificando Libro: #%d\n",editLibro+1);
+
+		printf("Autor Actual: %s\n", registroLibros[editLibro].autor);
+		printf("- Nuevo Autor: ");
 		gets(registroLibros[editLibro].autor);
-		printf("Nuevo Titulo: ");
+
+		printf("Titulo Actual: %s\n", registroLibros[editLibro].titulo);
+		printf("- Nuevo Titulo: ");
 		gets(registroLibros[editLibro].titulo);
-		printf("Nuevo Editorial: ");
+
+		printf("Editorial Actual: %s\n", registroLibros[editLibro].editorial);
+		printf("- Nuevo Editorial: ");
 		gets(registroLibros[editLibro].editorial);
-		printf("Nuevo A%co de publicacion: ", 164);
+
+		printf("A%co de publicacion actual: %d\n", 164, registroLibros[editLibro].anio);
+		printf("- Nuevo A%co de publicacion: ", 164);
 		scanf("%d", &registroLibros[editLibro].anio);
-		printf("Nuevo Precio: ");
+
+		printf("Precio Actual: %.2f\n", registroLibros[editLibro].precio);
+		printf("- Nuevo Precio: ");
 		scanf("%f", &registroLibros[editLibro].precio);
+
 		printf("\nEl libro se modifico con exito\n");
 	}
 	else
