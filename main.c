@@ -24,6 +24,7 @@ void modificarLibro(Libro registroLibros[MAXLIB]);
 
 void mergeSort(Libro registro[], int left, int right);
 void merge(Libro registro[], int left, int middle, int right);
+void quickSort(Libro arr[], int low, int high);
 
 int main()
 {
@@ -268,5 +269,15 @@ void merge(Libro registro[], int left, int middle, int right)
 		registro[k] = R[j];
 		j++;
 		k++;
+	}
+}
+void quickSort(Libro registro[], int low, int high)
+{
+	if (low < high)
+	{
+		int indexPivot = partition(registro, low, high);
+
+		quickSort(registro, low, indexPivot - 1);
+		quickSort(registro, indexPivot + 1, high);
 	}
 }
