@@ -22,6 +22,9 @@ void eliminarLibro(Libro registroLibros[MAXLIB]);
 void mostrarLibro(Libro registroLibros[MAXLIB]);
 void modificarLibro(Libro registroLibros[MAXLIB]);
 
+void mergeSort(Libro registro[], int left, int right);
+void merge(Libro registro[], int left, int middle, int right);
+
 int main()
 {
 	int opcion;
@@ -37,7 +40,8 @@ int main()
 		printf("2. Modificar Libro\n");
 		printf("3. Eliminar Libro\n");
 		printf("4. Mostrar Libros cargados\n");
-		printf("5. Salir\n");
+		printf("5. Ordenar por a%co de publicacion(MergeSort)\n", 164);
+		printf("6. Salir\n");
 		printf("Ingrese una opcion: ");
 		scanf("%d", &opcion);
 
@@ -65,15 +69,23 @@ int main()
 				printf("\nNo existen libros cargados para mostrar\n");
 			break;
 		case 5:
+			if (contLibros > 0)
+			{
+				mergeSort(registroLibros, 0, contLibros - 1);
+				mostrarLibro(registroLibros);
+			}
+			else
+				printf("\nNo existen libros cargados para mostrar\n");
+			break;
+		case 6:
 			printf("\n Saliendo del sistema...\n");
 			break;
-
 		default:
 			printf("\n Por favor, ingrese una opcion valida.\n");
 			break;
 		}
 		printf("\n");
-	} while (opcion != 5);
+	} while (opcion != 6);
 
 	return 0;
 }
@@ -197,4 +209,64 @@ void modificarLibro(Libro registroLibros[MAXLIB])
 	}
 
 	system("pause");
+}
+
+void mergeSort(Libro registro[], int left, int right)
+{
+	if (left < right)
+	{
+		int middle = left + (right - left) / 2;
+
+		mergeSort(registro, left, middle);
+		mergeSort(registro, middle + 1, right);
+
+		merge(registro, left, middle, right);
+	}
+}
+
+void merge(Libro registro[], int left, int middle, int right)
+{
+	int i, j, k;
+	int n1 = middle - left + 1;
+	int n2 = right - middle;
+
+	Libro L[n1], R[n2];
+
+	for (i = 0; i < n1; i++)
+		L[i] = registro[left + i];
+	for (j = 0; j < n2; j++)
+		R[j] = registro[middle + 1 + j];
+
+	i = 0;
+	j = 0;
+	k = left;
+
+	while (i < n1 && j < n2)
+	{
+		if (L[i].anio <= R[j].anio)
+		{
+			registro[k] = L[i];
+			i++;
+		}
+		else
+		{
+			registro[k] = R[j];
+			j++;
+		}
+		k++;
+	}
+
+	while (i < n1)
+	{
+		registro[k] = L[i];
+		i++;
+		k++;
+	}
+
+	while (j < n2)
+	{
+		registro[k] = R[j];
+		j++;
+		k++;
+	}
 }
