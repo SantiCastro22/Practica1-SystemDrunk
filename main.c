@@ -26,6 +26,8 @@ void mergeSort(Libro registro[], int left, int right);
 void merge(Libro registro[], int left, int middle, int right);
 void quickSort(Libro arr[], int low, int high);
 
+void selectionSort(Libro registro[], int n);
+
 int main()
 {
 	int opcion;
@@ -271,6 +273,7 @@ void merge(Libro registro[], int left, int middle, int right)
 		k++;
 	}
 }
+
 void quickSort(Libro registro[], int low, int high)
 {
 	if (low < high)
@@ -280,4 +283,25 @@ void quickSort(Libro registro[], int low, int high)
 		quickSort(registro, low, indexPivot - 1);
 		quickSort(registro, indexPivot + 1, high);
 	}
+}
+
+void selectionSort(Libro registro[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        int minIndex = i;
+
+        for (int j = i + 1; j < n; j++)
+        {
+            if (registro[j].anio < registro[minIndex].anio)
+            {
+                minIndex = j;
+            }
+        }
+
+        if (minIndex != i)
+        {
+            swap(&registro[i], &registro[minIndex]);
+        }
+    }
 }
