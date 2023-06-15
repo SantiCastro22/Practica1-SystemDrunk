@@ -303,5 +303,12 @@ void selectionSort(Libro registro[], int n)
         {
             swap(&registro[i], &registro[minIndex]);
         }
+	void swap(Libro *a, Libro *b)
+{
+	Libro temp = *a;
+	*a = *b;
+	*b = temp;
+}
+    
     }
 }
