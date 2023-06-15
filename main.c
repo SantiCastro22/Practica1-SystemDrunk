@@ -25,7 +25,8 @@ void modificarLibro(Libro registroLibros[MAXLIB]);
 void mergeSort(Libro registro[], int left, int right);
 void merge(Libro registro[], int left, int middle, int right);
 void quickSort(Libro arr[], int low, int high);
-
+int partition(Libro arr[], int low, int high);
+void swap(Libro *a, Libro *b);
 void selectionSort(Libro registro[], int n);
 
 int main()
@@ -44,7 +45,9 @@ int main()
 		printf("3. Eliminar Libro\n");
 		printf("4. Mostrar Libros cargados\n");
 		printf("5. Ordenar por a%co de publicacion(MergeSort)\n", 164);
-		printf("6. Salir\n");
+		printf("6. Ordenar por precio de libros(QuickSort)\n");
+		printf("7. Ordenar por a%co de publicacion (SelectionSort)\n", 164);
+		printf("8. Salir\n");
 		printf("Ingrese una opcion: ");
 		scanf("%d", &opcion);
 
@@ -81,14 +84,29 @@ int main()
 				printf("\nNo existen libros cargados para mostrar\n");
 			break;
 		case 6:
-			printf("\n Saliendo del sistema...\n");
+			if (contLibros > 0)
+			{
+				quickSort(registroLibros, 0, contLibros - 1);
+				mostrarLibro(registroLibros);
+			}
+			else
+				printf("\nNo existen libros cargados para mostrar\n");
+			break;
+		case 7:
+			if (contLibros > 0)
+			{
+				selectionSort(registroLibros, contLibros);
+				mostrarLibro(registroLibros);
+			}
+			else
+				printf("\nNo existen libros cargados para mostrar\n");
 			break;
 		default:
 			printf("\n Por favor, ingrese una opcion valida.\n");
 			break;
 		}
 		printf("\n");
-	} while (opcion != 6);
+	} while (opcion != 8);
 
 	return 0;
 }
@@ -312,7 +330,7 @@ void swap(Libro *a, Libro *b)
 	*a = *b;
 	*b = temp;
 } 
- 
+
 int partition(Libro registro[], int low, int high)
 {
 	float pivot = registro[high].precio;
