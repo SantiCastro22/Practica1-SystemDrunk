@@ -312,5 +312,4 @@ void selectionSort(Libro registro[], int n)
 	*a = *b;
 	*b = temp;
 }
-    }
-}
+
