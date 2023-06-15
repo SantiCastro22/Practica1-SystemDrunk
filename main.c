@@ -311,5 +311,22 @@ void swap(Libro *a, Libro *b)
 	Libro temp = *a;
 	*a = *b;
 	*b = temp;
-}
+} 
+ 
+int partition(Libro registro[], int low, int high)
+{
+	float pivot = registro[high].precio;
+	int i = low - 1;
 
+	for (int j = low; j <= high - 1; j++)
+	{
+		if (registro[j].precio < pivot)
+		{
+			i++;
+			swap(&registro[i], &registro[j]);
+		}
+	}
+
+	swap(&registro[i + 1], &registro[high]);
+	return i + 1;
+}
