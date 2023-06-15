@@ -306,7 +306,7 @@ void selectionSort(Libro registro[], int n)
     }
 }
 
-    void swap(Libro *a, Libro *b)
+void swap(Libro *a, Libro *b)
 {
 	Libro temp = *a;
 	*a = *b;
